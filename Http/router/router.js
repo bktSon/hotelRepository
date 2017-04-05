@@ -6,8 +6,9 @@ const hotelController = require('../controller/hotelController');
 //const models = require('../../models/index');
 
 router.post('/hotel', hotelController.insert);
-//router.get('/', hotelController.get);
-//router.get('/hotels/:hotelId', hotelController.getAll);
+router.post('/room/:hotelId', hotelController.insertRoom);
+router.get('/hotels/:hotelId', hotelController.getAllRoom);
+router.get('/lowestPrice/:hotelId', hotelController.getLowestPrice);
 
 module.exports = router;
 
