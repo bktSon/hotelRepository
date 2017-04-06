@@ -1,16 +1,17 @@
-'use strict';
-const express = require('express');
-const router = express.Router();
-const hotelController = require('../controller/hotelController');
-//const sequenlize = require('sequelize');
-//const models = require('../../models/index');
+'use strict'
+const express = require('express')
+const router = express.Router()
+const hotelController = require('../controller/hotelController')
+const hotelRequireMiddleWare = require('../MiddleWare/hotelRequire.MiddleWare.js')
+const roomRequireMiddleWare = require('../MiddleWare/roomRequireMiddleWare')
+const hotelNotExistedMiddleWare = require('../MiddleWare/hotelNotExistedMIddleWare')
 
-router.post('/hotel', hotelController.insert);
-router.post('/room/:hotelId', hotelController.insertRoom);
-router.get('/hotels/:hotelId', hotelController.getAllRoom);
-router.get('/lowestPrice/:hotelId', hotelController.getLowestPrice);
+router.post('/hotel', hotelRequireMiddleWare, hotelController.insert)
+router.post('/room/:hotelId', hotelNotExistedMiddleWare, roomRequireMiddleWare, hotelController.insertRoom)
+router.get('/hotels/:hotelId', hotelNotExistedMiddleWare, hotelController.getAllRoom)
+router.get('/lowestPrice/:hotelId', hotelController.getLowestPrice)
 
-module.exports = router;
+module.exports = router
 
 
 
