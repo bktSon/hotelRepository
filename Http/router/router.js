@@ -8,7 +8,7 @@ const hotelNotExistedMiddleWare = require('../MiddleWare/hotelNotExistedMIddleWa
 
 router.post('/hotel', hotelRequireMiddleWare, hotelController.insert)
 router.post('/room/:hotelId', hotelNotExistedMiddleWare, roomRequireMiddleWare, hotelController.insertRoom)
-router.get('/hotels/:hotelId', hotelNotExistedMiddleWare, hotelController.getAllRoom)
+router.get('/rooms/:hotelId', hotelNotExistedMiddleWare, hotelController.getAllRoom)
 router.get('/lowestPrice/:hotelId', hotelNotExistedMiddleWare, hotelController.getLowestPrice)
 
 module.exports = router
