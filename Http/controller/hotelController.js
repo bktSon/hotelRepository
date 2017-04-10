@@ -1,7 +1,7 @@
 'use strict'
 
 //const HotelRepository = require('../../App/hotel/hotelRepository');
-const models = require('../../models/index');
+const models = require('../../Models/index');
 
 module.exports.insert = function (req, res) {
   models.Hotels
@@ -13,12 +13,9 @@ module.exports.insert = function (req, res) {
 }
 
 module.exports.insertRoom = function (req, res) {
-  models.Hotels
-    .findOne({where: {id: req.params.hotelId}}).then((hotel) => {
     models.Rooms
-      .create({name: req.body.name, price: req.body.price, hotel_id: hotel.id}).then((result) => {
+      .create({name: req.body.name, price: req.body.price, hotel_id: req.params.id}).then((result) => {
       res.json(result)
-    })
   })
 }
 
@@ -39,7 +36,7 @@ module.exports.getLowestPrice = function (req, res) {
       .findOne({
         where     : {hotel_id: req.hotel.id},
         attributes: [
-          [models.sequelize.fn('max', models.sequelize.col('price')), 'lowestPrice'],
+          [models.sequelize.fn('min', models.sequelize.col('price')), 'lowestPrice'],
         ]
       }).then((room) => {
       res.json(room)
