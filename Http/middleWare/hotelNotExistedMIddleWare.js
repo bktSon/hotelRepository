@@ -1,6 +1,6 @@
 'use strict';
 
-const models = require('../../Models/index');
+const models = require('../../models/index');
 
 module.exports = function(req, res, next) {
   models.Hotels.findOne({where: {id: req.params.hotelId}}).then((hotel) => {

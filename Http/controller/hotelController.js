@@ -1,7 +1,7 @@
 'use strict'
 
 //const HotelRepository = require('../../App/hotel/hotelRepository');
-const models = require('../../Models/index');
+const models = require('../../models');
 
 module.exports.insert = function (req, res) {
   models.Hotels
